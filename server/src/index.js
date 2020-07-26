@@ -68,3 +68,36 @@ getUserById(101)
     .catch(console.error);
 
  */
+//-----server (express)
+
+//import router from "./routes";
+const router = require('./routes');
+const express = require('express');
+//var app = express();
+require('dotenv/config');
+//import express from 'express';
+
+const {User} = require('./db/models');
+//import {User} from './db/models';
+const app = express();
+const port = process.env.PORT || 5000;
+app.use(express.json());
+app.use(router);
+
+/*
+app.get('/', (req, res) => res.send('Hello World!'));
+app.post('/user', async (req, res, next) => {
+    try{
+        const createdUser = await User.create(req.body);
+        return res.send(createdUser);
+        //console.log(req.body);
+    }catch (e) {
+        next(e);
+    }
+});
+app.use((err, req, res) => {
+    res.status(500).send('Smth is broken (((');
+});
+ */
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
